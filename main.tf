@@ -77,6 +77,7 @@ resource "aws_appautoscaling_policy" "scale_down" {
 resource "aws_cloudwatch_metric_alarm" "high" {
   count = var.enabled ? 1 : 0
 
+  metric_name         = "HighUtilization"
   alarm_name          = "${var.name_prefix}-alarm-high"
   alarm_description   = "Alarm monitors high utilization for scaling up"
   comparison_operator = "GreaterThanThreshold"
@@ -114,6 +115,7 @@ resource "aws_cloudwatch_metric_alarm" "high" {
 resource "aws_cloudwatch_metric_alarm" "low" {
   count = var.enabled ? 1 : 0
 
+  metric_name         = "LowUtilization"
   alarm_name          = "${var.name_prefix}-alarm-low"
   alarm_description   = "Alarm monitors low utilization for scaling down."
   comparison_operator = "LessThanOrEqualToThreshold"
